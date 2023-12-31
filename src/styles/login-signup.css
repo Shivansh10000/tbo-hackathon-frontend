@@ -143,3 +143,9 @@ form .user-details .input-box{
     flex-direction: column;
   }
 }
+
+.error {
+  color: rgb(199, 82, 150);
+  text-align: center;
+  font-style: italic;
+}

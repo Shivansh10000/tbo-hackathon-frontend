@@ -1,9 +1,27 @@
 import React,{useState} from "react";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+
 import '../styles/login-signup.css'
 const Login = () => {
   const [email,setEmail] = useState();
   const [password,setPassword]=useState();
   const [loading,setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const logIn = async (e) => {
+    e.preventDefault();
+    try {
+      if(!email||!password){
+        setError("All fields are mandatory");
+        return;
+      }
+      await signInWithEmailAndPassword(getAuth(), email, password);
+      navigate("/");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
   const handleSubmit = ()=>{
     setLoading(true);
     console.log({email,password});
@@ -22,11 +40,11 @@ const Login = () => {
           </div>
           <div className="input-box">
             <span className="details">Password</span>
-            <input type="text" placeholder="Enter your password" onChange={(e)=>setPassword(e.target.value)} required />
+            <input type="password" placeholder="Enter your password" onChange={(e)=>setPassword(e.target.value)} required />
           </div>
         </div>
-        
-        <div className="button">
+        {error!==""? <div className="error">*{error}</div>:""}
+        <div className="button" onClick={logIn}>
           <input type="submit" value="Login" />
         </div>
         <p>Not Registered Yet ? <a href="signup">Register</a></p>
