@@ -54,20 +54,27 @@ const SearchHotels = () => {
   return (
     <div className="container">
       {searchResults.map((hotel, index) => (
-        <div key={index}>
-          <h2>{hotel.HotelInfo.HotelName}</h2>
+        <div className="hotel-card" key={index}>
+          <h2 className="hotel-name">{hotel.HotelInfo.HotelName}</h2>
           <img
+            className="hotel-image"
             src={hotel.HotelInfo.HotelPicture}
             alt={hotel.HotelInfo.HotelName}
           />
-          <p>{hotel.HotelInfo.HotelDescription}</p>
-          <p>Address: {hotel.HotelInfo.HotelAddress}</p>
-          <p>Rating: {hotel.HotelInfo.TripAdvisorRating}</p>
-          <p>
+          <p className="hotel-description">
+            {hotel.HotelInfo.HotelDescription}
+          </p>
+          <p className="hotel-address">
+            Address: {hotel.HotelInfo.HotelAddress}
+          </p>
+          <p className="hotel-rating">
+            Rating: {hotel.HotelInfo.TripAdvisorRating}
+          </p>
+          <p className="hotel-price">
             Price: {hotel.MinHotelPrice.TotalPrice}{" "}
             {hotel.MinHotelPrice.Currency}
           </p>
-          <hr />
+          <hr className="separator" />
         </div>
       ))}
     </div>

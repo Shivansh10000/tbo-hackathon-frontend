@@ -1,0 +1,75 @@
+/* Resetting default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Applying background color to the whole page */
+  body {
+    background-color: #f4f4f4;
+  }
+  
+  /* Styling for the container */
+  .container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Styling for the headings */
+  .main-heading {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .sub-heading {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #666;
+  }
+  
+  /* Styling for the input */
+  .search-input {
+    width: calc(100% - 40px);
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  /* Styling for the search button */
+  .search-btn {
+    padding: 15px 30px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+  }
+  
+  .search-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Loading and response text styles */
+  .loading {
+    font-style: italic;
+    color: #888;
+    font-size: 1rem;
+  }
+  
+  .response-text {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
