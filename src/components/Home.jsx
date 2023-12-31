@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "../styles/homepage.css";
 
 const Home = () => {
   const BASE_URL = "http://localhost:8000";
@@ -24,18 +25,23 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <h1>Discover Your World</h1>
-      <p>What would you like to find today?</p>
+    <div className="container">
+      <h1 className="main-heading">Discover Your World</h1>
+      <p className="sub-heading">What would you like to find today?</p>
       <input
         type="text"
+        className="search-input"
         placeholder="Search here..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <button onClick={handleSearch}>Search</button>
-      {loading ? <p>Loading...</p> : null}
-      {responseText && !loading ? <p>{responseText}</p> : null}
+      <button className="search-btn" onClick={handleSearch}>
+        Search
+      </button>
+      {loading ? <p className="loading">Loading...</p> : null}
+      {responseText && !loading ? (
+        <p className="response-text">{responseText}</p>
+      ) : null}
     </div>
   );
 };
