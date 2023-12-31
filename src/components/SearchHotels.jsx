@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import HotelResult from "./dummy"; //dummy response for temporary use.
+import "../styles/resultpage.css";
 const SearchHotels = () => {
   const [searchResults, setSearchResults] = useState(null);
   useEffect(() => {
