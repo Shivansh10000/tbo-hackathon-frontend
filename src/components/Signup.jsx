@@ -1,6 +1,8 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import useUser from "../hooks/useUser";
+import axios from "axios";
 
 import '../styles/login-signup.css'
 const Signup = () => {
@@ -16,9 +18,18 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const [error, setError] = useState("");
+  const {user, isLoading} = useUser();
+  const [token, setToken] = useState(null);
 
-  const handleSubmit = ()=>{
-    
+  useEffect(() => {(async() => {
+
+    const userToken = user && await user.getIdToken();
+    setToken(userToken);
+  })();
+  }, [user]);
+
+  const handleSubmit = (evt)=>{
+    evt.preventDefault();
     setLoading(true);
     console.log({name,email,age,contact,country,state,password,confirmPassword});
     setLoading(false);
@@ -37,7 +48,22 @@ const Signup = () => {
       }
 
       await createUserWithEmailAndPassword(getAuth(), email, password);
-
+      
+      const formData = {
+        name: name,
+        email: email,
+        age: age,
+        country: country,
+        state: state,
+        phone_number: contact
+      };
+    
+      const config = {
+        headers: {
+          'Authtoken': token,
+        },
+      }
+      await axios.post("http://localhost:8000/createProfile", formData, config);
       navigate("/");
     } catch (e) {
       setError(e.message);
@@ -48,7 +74,7 @@ const Signup = () => {
     <div className="container-div">
     <div className="title"><h2>Registration</h2></div>
     <div className="content">
-      <form onSubmit={handleSubmit} >
+      <form className="form" >
         <div className="user-details">
           <div className="input-box">
             <span className="details">Full Name</span>
