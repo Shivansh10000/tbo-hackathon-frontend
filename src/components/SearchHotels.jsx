@@ -76,7 +76,7 @@ const SearchHotels = () => {
                         </div>
                         <div className="duration">
                             <ins>◷</ins>
-                            <p>{`Rating : ${hotel.HotelInfo.TripAdvisorRating}`}</p>
+                            <p>{`Rating: ${hotel.HotelInfo.TripAdvisorRating}`}</p>
                         </div>
                     </div>
                     <hr />
