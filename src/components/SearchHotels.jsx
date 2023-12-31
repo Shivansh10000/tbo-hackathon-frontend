@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios'
 import HotelResult from "./dummy"; //dummy response for temporary use.
+import '../styles/resultpage.css'
 const SearchHotels = () => {
   const [searchResults, setSearchResults] = useState(null);
   useEffect(() => {
@@ -60,19 +61,29 @@ const SearchHotels = () => {
   }
   if (searchResults.Status.Code !== 200) return <div>{searchResults.Description}</div>
   return (
-    <div>
-      <h1>Best Hotels Results</h1>
-      {searchResults.HotelSearchResults.map((hotel, index) => (
-        <div key={index}>
-          <h3>{`Hotel Name: ${hotel.HotelInfo.HotelName}`}</h3>
-          <img src={hotel.HotelInfo.HotelPicture} alt="img of hotel" />
-          <p>{`Description : ${hotel.HotelInfo.HotelDescription}`}</p>
-          <p>{`Address : ${hotel.HotelInfo.HotelAddress}`}</p>
-          <p>{`Rating : ${hotel.HotelInfo.TripAdvisorRating}`}</p>
-          <p>{`Price : ${hotel.MinHotelPrice.TotalPrice} ${hotel.MinHotelPrice.Currency}`}</p>
-        </div>
-      ))}
-    </div>
+    <div className='container'>
+      { searchResults.HotelSearchResults.map((hotel, index)=>(
+            <div className="nft">
+                <div className='main'>
+                    <img className='tokenImage' src={hotel.HotelInfo.HotelPicture} alt="NFT" />
+                    <h2>{hotel.HotelInfo.HotelName}</h2>
+                    <p className='description'>{hotel.HotelInfo.HotelDescription}</p>
+                    <p className='description'>{hotel.HotelInfo.HotelAddress}</p>
+                    <div className='tokenInfo'>
+                        <div className="price">
+                            <ins>◘</ins>
+                            <p>{`Price: ${hotel.MinHotelPrice.TotalPrice} ${hotel.MinHotelPrice.Currency}`}</p>
+                        </div>
+                        <div className="duration">
+                            <ins>◷</ins>
+                            <p>{`Rating : ${hotel.HotelInfo.TripAdvisorRating}`}</p>
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+            </div>))
+            }
+        </div >
   )
 };
 
