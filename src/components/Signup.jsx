@@ -49,22 +49,7 @@ const Signup = () => {
 
       await createUserWithEmailAndPassword(getAuth(), email, password);
       
-      const formData = {
-        name: name,
-        email: email,
-        age: age,
-        country: country,
-        state: state,
-        phone_number: contact
-      };
-    
-      const config = {
-        headers: {
-          'Authtoken': token,
-        },
-      }
-      await axios.post("http://localhost:8000/createProfile", formData, config);
-      navigate("/");
+      navigate('/')
     } catch (e) {
       setError(e.message);
     }
