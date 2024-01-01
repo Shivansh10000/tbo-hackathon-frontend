@@ -16,6 +16,7 @@ const Home = () => {
   const [token, setToken] = useState(null);
   const {user, isLoading} = useUser();
   const [isReady, setIsReady] = useState(false);
+  const [dataExtractedAPI, setDataExtractedAPI] = useState(null);
 
   useEffect(() => {(async() => {
     if(user) {
@@ -90,7 +91,7 @@ const Home = () => {
       {
         Adults: 1,
         Children: 2,
-        ChildrenAges: [1, 16],
+        ChildrenAges: [16, 16],
       },
     ],
     IsDetailResponse: true,
@@ -107,11 +108,21 @@ const Home = () => {
     setLoading(true);
     try {
       const response = await axios.post(`${BASE_URL}/extract-keywords`, {
-        prompt: searchTerm,
-        stateCodes: stateCodes
+        prompt: searchTerm
       });
 
-      setResponseText(response.data.data);
+      // Extract values from the response text
+      const extractedValues = extractValues(response.data.data);
+      console.log(extractedValues);
+
+      // Build the data object based on extracted values
+      const dataExtracted = buildDataObject(extractedValues);
+      console.log(dataExtracted);
+      setDataExtractedAPI(dataExtracted);
+
+      // Use the data object for further processing or API calls
+      // For now, you can set the response text to the serialized data object
+      setResponseText(JSON.stringify(dataExtracted, null, 2));
     } catch (error) {
       console.error("Error fetching data:", error);
       // Handle error state if needed
@@ -120,6 +131,64 @@ const Home = () => {
     }
   };
 
+  function extractValues(response) {
+    const valuesObject = {};
+    
+    // Regular expressions to match the key-value pairs in the response
+    const regex = /(\w+)=([\w-]+)/g;
+    let match;
+    
+    // Loop through matches and store them in the object
+    while ((match = regex.exec(response)) !== null) {
+      const key = match[1];
+      const value = match[2];
+      // Store the key-value pairs in the object
+      valuesObject[key] = value;
+    }
+    
+    return valuesObject;
+  }
+  
+  // Example usage:
+  const response = "checkin=2024-01-06, CheckOut=2024-01-22, CityCode=141587, CityName=Gujarat, CountryNameCode=IN, GuestNationalityCode=IN, PreferredCurrencyCode=INR, adults in the room=3, children=0";
+  
+  const extractedValues = extractValues(response);
+  console.log(extractedValues); // Output the extracted values
+
+  function buildDataObject(obj) {
+    const data = {
+      CheckIn: obj.checkin,
+      CheckOut: obj.CheckOut,
+      HotelCodes: "",
+      CityCode: obj.CityCode,
+      CityName: obj.CityName,
+      CountryName: obj.CountryNameCode,
+      GuestNationality: obj.GuestNationalityCode,
+      PreferredCurrencyCode: obj.PreferredCurrencyCode,
+      PaxRooms: [
+        {
+          Adults: parseInt(obj.room),
+          Children: parseInt(obj.children),
+          ChildrenAges: Array(parseInt(obj.children)).fill(16),
+        },
+      ],
+      IsDetailResponse: true,
+      ResponseTime: 23,
+      Filters: {
+        MealType: "All",
+        Refundable: "all",
+        NoOfRooms: 0,
+        StarRating: "All",
+      },
+    };
+    
+    return data;
+  }
+
+  const dataExtracted = buildDataObject(extractedValues)
+  console.log(dataExtracted);
+
+  
   return (
     <div className="container">
       <h1 className="main-heading">Discover Your World</h1>
@@ -139,7 +208,8 @@ const Home = () => {
         <p className="response-text">{responseText}</p>
       ) : null}
 
-      {/* {isReady && historyData.firebase_id} */}
+      {isReady && historyData.firebase_id}
+      {dataExtractedAPI && <SearchHotels searchData={dataExtractedAPI} />}
     </div>
   );
 };
