@@ -108,7 +108,8 @@ const Home = () => {
     setLoading(true);
     try {
       const response = await axios.post(`${BASE_URL}/extract-keywords`, {
-        prompt: searchTerm
+        prompt: searchTerm,
+        historyData : historyData
       });
 
       // Extract values from the response text
@@ -204,11 +205,11 @@ const Home = () => {
         Search
       </button>
       {loading ? <p className="loading">Loading...</p> : null}
-      {responseText && !loading ? (
+      {/* {responseText && !loading ? (
         <p className="response-text">{responseText}</p>
-      ) : null}
+      ) : null} */}
 
-      {isReady && historyData.firebase_id}
+      {/* {isReady && historyData.firebase_id} */}
       {dataExtractedAPI && <SearchHotels searchData={dataExtractedAPI} />}
     </div>
   );
