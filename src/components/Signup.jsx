@@ -3,18 +3,12 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import useUser from "../hooks/useUser";
 import axios from "axios";
-
 import '../styles/login-signup.css'
 const Signup = () => {
-  const [name,setName] = useState();
+  
   const [email,setEmail] = useState();
-  const [age , setAge] = useState();
-  const [contact,setContact]=useState();
-  const [country,setCountry]  = useState();
-  const [state,setState] = useState();
   const [password,setPassword]=useState();
   const [confirmPassword,setConfirmPassword] = useState();
-  const [loading,setLoading] = useState(false);
   const navigate = useNavigate();
 
   const [error, setError] = useState("");
@@ -30,9 +24,7 @@ const Signup = () => {
 
   const handleSubmit = (evt)=>{
     evt.preventDefault();
-    setLoading(true);
-    console.log({name,email,age,contact,country,state,password,confirmPassword});
-    setLoading(false);
+    console.log({email,password,confirmPassword});
   }
 
   const createAccount = async (e) => {
@@ -49,7 +41,7 @@ const Signup = () => {
 
       await createUserWithEmailAndPassword(getAuth(), email, password);
       
-      navigate('/')
+      navigate('/createprofile')
     } catch (e) {
       setError(e.message);
     }
@@ -62,28 +54,8 @@ const Signup = () => {
       <form className="form" >
         <div className="user-details">
           <div className="input-box">
-            <span className="details">Full Name</span>
-            <input type="text" placeholder="Enter your name" onChange={(e)=>setName(e.target.value)} required />
-          </div>
-          <div className="input-box">
-            <span className="details">Age</span>
-            <input type="number" placeholder="Enter your age" onChange={(e)=>setAge(e.target.value)} required />
-          </div>
-          <div className="input-box">
             <span className="details">Email</span>
             <input type="email" placeholder="abcd@xyz.in" onChange={(e)=>setEmail(e.target.value)} required />
-          </div>
-          <div className="input-box">
-            <span className="details">Phone Number</span>
-            <input type="text" placeholder="Enter your number" onChange={(e)=>setContact(e.target.value)} required />
-          </div>
-          <div className="input-box">
-            <span className="details">Country</span>
-            <input type="text" placeholder="Your Country Name" onChange={(e)=>setCountry(e.target.value)} required />
-          </div>
-          <div className="input-box">
-            <span className="details">State</span>
-            <input type="text" placeholder="State" onChange={(e)=>setState(e.target.value)} required />
           </div>
           <div className="input-box">
             <span className="details">Password</span>

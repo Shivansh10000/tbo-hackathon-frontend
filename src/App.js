@@ -7,7 +7,7 @@ import Signup from "./components/Signup"; // Import Signup component
 import SearchHotels from "./components/SearchHotels"; // Import SearchHotels component
 import Profile from "./components/Profile"; // Import Profile component
 import History from "./components/History"; // Import History component
-
+import CreateProfile from './components/CreateProfile';
 const App = () => {
   return (
     <Router>
@@ -19,6 +19,7 @@ const App = () => {
         <Route path="/searchHotels" element={<SearchHotels />} />
         <Route path="/profile/:userId" element={<Profile />} />
         <Route path="/history/:userId" element={<History />} />
+        <Route path="/createprofile" element={<CreateProfile />} />
       </Routes>
     </Router>
   );
