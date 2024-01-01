@@ -1,12 +1,39 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "../styles/homepage.css";
+import SearchHotels from "./SearchHotels";
 
 const Home = () => {
   const BASE_URL = "http://localhost:8000";
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
   const [responseText, setResponseText] = useState("");
+
+  const data = {
+    CheckIn: "2024-01-27",
+    CheckOut: "2024-01-29",
+    HotelCodes: "",
+    CityCode: "115936",
+    CityName: "Dubai",
+    CountryName: "UAE",
+    GuestNationality: "AE",
+    PreferredCurrencyCode: "USD",
+    PaxRooms: [
+      {
+        Adults: 1,
+        Children: 2,
+        ChildrenAges: [1, 16],
+      },
+    ],
+    IsDetailResponse: true,
+    ResponseTime: 23,
+    Filters: {
+      MealType: "All",
+      Refundable: "all",
+      NoOfRooms: 0,
+      StarRating: "All",
+    },
+  };
 
   const handleSearch = async () => {
     setLoading(true);
@@ -42,6 +69,7 @@ const Home = () => {
       {responseText && !loading ? (
         <p className="response-text">{responseText}</p>
       ) : null}
+      <SearchHotels searchData={data} />
     </div>
   );
 };

@@ -26,7 +26,6 @@ const NavBar = () => {
           <Link to="/">Home</Link>
           <Link to="/login">Login</Link>
           <Link to="/signup">Signup</Link>
-          <Link to="/searchHotels">Search Hotels</Link>
           {/* Assuming userId is available from somewhere */}
           <Link to={`/profile/${userId}`}>Profile</Link>
           <Link to={`/history/${userId}`}>History</Link>
