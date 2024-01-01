@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import useUser from "../hooks/useUser";
+
 import axios from "axios";
 import "../styles/homepage.css";
 import SearchHotels from "./SearchHotels";
@@ -9,6 +11,31 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [responseText, setResponseText] = useState("");
 
+  const [id, setId] = useState(null);
+  const [historyData, setHistoryData] = useState({});
+  const [token, setToken] = useState(null);
+  const {user, isLoading} = useUser();
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {(async() => {
+    if(user) {
+      const userToken = user && await user.getIdToken();
+      setToken(userToken);
+      console.log(user);
+      const response = await axios.get(`http://localhost:8000/api/getHistoryID/${user.uid}`, {headers: {authtoken: userToken}});
+      
+      if(response.data !== 'Failure') {
+        const dataRes = response.data;
+        setId(dataRes);
+        const userData = await axios.get(`http://localhost:8000/getUserHistory/${dataRes}`);
+        setHistoryData(userData.data);
+        setIsReady(true);
+      } else {
+        setIsReady(true);
+      }
+  }
+  })();
+  }, [user, id])
   const currencies = {
     "Indian Rupee": "INR",
   };
@@ -111,7 +138,8 @@ const Home = () => {
       {responseText && !loading ? (
         <p className="response-text">{responseText}</p>
       ) : null}
-      <SearchHotels searchData={data} />
+
+      {/* {isReady && historyData.firebase_id} */}
     </div>
   );
 };
