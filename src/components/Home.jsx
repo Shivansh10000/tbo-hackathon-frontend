@@ -81,6 +81,7 @@ const Home = () => {
     try {
       const response = await axios.post(`${BASE_URL}/extract-keywords`, {
         prompt: searchTerm,
+        stateCodes: stateCodes
       });
 
       setResponseText(response.data.data);
