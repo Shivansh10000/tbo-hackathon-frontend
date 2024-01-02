@@ -56,7 +56,7 @@ const [name,setName] = useState();
           'Authtoken': token,
         },
       }
-      await axios.post("http://localhost:8000/createProfile", formData, config);
+      await axios.post("https://tbo-hackathon-backend.vercel.app/createProfile", formData, config);
       navigate("/");
     } catch (e) {
       setError(e.message);

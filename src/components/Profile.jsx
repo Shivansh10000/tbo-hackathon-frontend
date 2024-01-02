@@ -14,12 +14,12 @@ const Profile = () => {
       const userToken = user && await user.getIdToken();
       setToken(userToken);
       console.log(user);
-      const response = await axios.get(`http://localhost:8000/api/getProfileID/${user.uid}`, {headers: {authtoken: userToken}});
+      const response = await axios.get(`https://tbo-hackathon-backend.vercel.app/api/getProfileID/${user.uid}`, {headers: {authtoken: userToken}});
       
       if(response.data !== 'Failure') {
         const dataRes = response.data;
         setId(dataRes);
-        const userData = await axios.get(`http://localhost:8000/getUserProfile/${dataRes}`);
+        const userData = await axios.get(`https://tbo-hackathon-backend.vercel.app/getUserProfile/${dataRes}`);
         setData(userData.data);
         setIsReady(true);
       } else {

@@ -3,7 +3,7 @@ import axios from "axios";
 import "../styles/resultpage.css";
 
 const SearchHotels = ({ searchData }) => {
-  const BASE_URL = "http://localhost:8000";
+  const BASE_URL = "https://tbo-hackathon-backend.vercel.app";
   const [searchResults, setSearchResults] = useState(null);
 
   useEffect(() => {

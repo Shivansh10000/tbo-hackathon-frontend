@@ -6,7 +6,7 @@ import "../styles/homepage.css";
 import SearchHotels from "./SearchHotels";
 
 const Home = () => {
-  const BASE_URL = "http://localhost:8000";
+  const BASE_URL = "https://tbo-hackathon-backend.vercel.app";
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
   const [responseText, setResponseText] = useState("");
@@ -23,12 +23,12 @@ const Home = () => {
       const userToken = user && await user.getIdToken();
       setToken(userToken);
       console.log(user);
-      const response = await axios.get(`http://localhost:8000/api/getHistoryID/${user.uid}`, {headers: {authtoken: userToken}});
+      const response = await axios.get(`${BASE_URL}/api/getHistoryID/${user.uid}`, {headers: {authtoken: userToken}});
       
       if(response.data !== 'Failure') {
         const dataRes = response.data;
         setId(dataRes);
-        const userData = await axios.get(`http://localhost:8000/getUserHistory/${dataRes}`);
+        const userData = await axios.get(`${BASE_URL}/getUserHistory/${dataRes}`);
         setHistoryData(userData.data);
         setIsReady(true);
       } else {
