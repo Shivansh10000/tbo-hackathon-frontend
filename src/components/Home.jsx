@@ -19,13 +19,14 @@ const Home = () => {
   const [dataExtractedAPI, setDataExtractedAPI] = useState(null);
 
   useEffect(() => {(async() => {
+    try{
     if(user) {
       const userToken = user && await user.getIdToken();
       setToken(userToken);
       console.log(user);
       const response = await axios.get(`${BASE_URL}/api/getHistoryID/${user.uid}`, {headers: {authtoken: userToken}});
       
-      if(response.data !== 'Failure') {
+      if(response.data === 'Success') {
         const dataRes = response.data;
         setId(dataRes);
         const userData = await axios.get(`${BASE_URL}/getUserHistory/${dataRes}`);
@@ -34,6 +35,10 @@ const Home = () => {
       } else {
         setIsReady(true);
       }
+  }
+  }
+  catch(e) {
+    setIsReady(true);
   }
   })();
   }, [user, id])
