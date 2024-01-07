@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# TBO Hackathon - VoyageHacks
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# CodeCatalysts Project: Improved search experience for users using Generative AI
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+CodeCatalysts presents a cutting-edge hotel booking application designed to streamline the user experience by integrating natural language input, personalized search capabilities, and seamless API querying. This project aims to simplify the process of finding relevant hotel options based on user prompts.
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Natural Language Input Processing
+- **Concept**: Utilizes natural language processing techniques to extract relevant keywords from user input prompts.
+- **Purpose**: Facilitates an intuitive search experience, saving users time and eliminating the need for complex filter navigation across multiple pages.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### API Integration with TBO
+- **Functionality**: Generates a JSON object from extracted keywords, which is used to query the TBO API for relevant hotel results.
+- **Objective**: Enhances user experience by delivering tailored search outcomes directly related to the user's input.
 
-### `npm test`
+### Personalized Search with OpenAI Integration
+- **Innovation**: Implements user history data for personalized search queries fed into OpenAI's generative model.
+- **Advantage**: Maximizes the likelihood of booking success by customizing search results based on individual user preferences.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### User Authentication via Google Firebase
+- **Authentication System**: Implements login, signup, and authentication functionalities using Google Firebase.
+- **Benefits**: Ensures secure access and data management for user accounts, enhancing overall platform reliability.
 
-### `npm run build`
+## Screenshots
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Home Page
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<img width="1429" alt="Screenshot 2024-01-07 at 12 43 23 PM" src="https://github.com/Shivansh10000/tbo-hackathon-frontend/assets/94700224/3dbf3ff2-fc41-42f3-b780-4605fa845c60">
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Search Results
 
-### `npm run eject`
+<img width="1334" alt="Screenshot 2024-01-07 at 12 45 21 PM" src="https://github.com/Shivansh10000/tbo-hackathon-frontend/assets/94700224/3f0d2ab5-d994-4ca2-a8bd-57e0faba04db">
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Login Page
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<img width="1380" alt="Screenshot 2024-01-07 at 12 46 17 PM" src="https://github.com/Shivansh10000/tbo-hackathon-frontend/assets/94700224/cd3458ca-207f-44b8-aec7-3c3b7c5ed89c">
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Signup Page
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<img width="1353" alt="Screenshot 2024-01-07 at 12 46 48 PM" src="https://github.com/Shivansh10000/tbo-hackathon-frontend/assets/94700224/6b84ea75-6683-42f1-85c5-a0c2dd037c43">
 
-## Learn More
+## How It Works
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. **Natural Language Processing**: User input prompts are processed to extract keywords relevant to hotel search queries.
+2. **API Querying**: Extracted keywords are used to create a JSON object, querying the TBO API for relevant hotel data.
+3. **Personalized Search**: Individual user history data is utilized to personalize search results through OpenAI's generative model.
+4. **User Authentication**: Google Firebase manages user authentication, ensuring secure access and data protection.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Contributors
 
-### Code Splitting
+- Shivansh Joshi
+- Sumit Verma
+- Vikrant Kumar
+- Satyam Kumar
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Technologies Used
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- ReactJS
+- NodeJS
+- MongoDB
+- TBO API
+- OpenAI Generative Model
+- Google Firebase Authentication
